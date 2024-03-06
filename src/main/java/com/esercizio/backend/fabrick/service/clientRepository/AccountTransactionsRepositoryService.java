@@ -36,7 +36,6 @@ public class AccountTransactionsRepositoryService {
         logger.info("RETRIEVE account transactions from DB for idAccount: {}, fromAccountingDate:  {}, toAccountingDate: {}", idAccount, fromAccountingDate, toAccountingDate);
         List<RequestAccountTransactionEntity> accountTransaction = accountTransactionsRepository.findAll(RequestAccountTransactionSpecification.retrieveRequestAccountTransactionByIdAccountAndtoAccountingDateAndFromAccountingDate(bankAccontParamInputBin));
         logger.info("RETRIEVED account transactions for idAccount: {},f romAccountingDate:  {}, toAccountingDate: {} from DB: {}", idAccount, fromAccountingDate, toAccountingDate, accountTransaction);
-        List<RequestAccountTransactionEntity> accountTransaction1 = accountTransactionsRepository.findAll();
         return accountTransaction;
     }
 

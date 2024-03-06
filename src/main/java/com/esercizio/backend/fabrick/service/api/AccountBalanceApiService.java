@@ -1,4 +1,4 @@
-package com.esercizio.backend.fabrick.service;
+package com.esercizio.backend.fabrick.service.api;
 
 import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
 import com.esercizio.backend.fabrick.model.api.AccountBalance;
@@ -15,20 +15,20 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 
 @Service
-public class AccountBalanceService {
+public class AccountBalanceApiService implements RestApi<ResponseEntity<AccountBalance>,BankAccontParamInputBin > {
 
-    Logger logger = LoggerFactory.getLogger(AccountBalanceService.class);
+    Logger logger = LoggerFactory.getLogger(AccountBalanceApiService.class);
 
     @Autowired
     private AccountBalanceRestClientService accountBalanceRestClientService;
 
-    public ResponseEntity<AccountBalance> retrieveBalance(BankAccontParamInputBin bankAccontParamInputBin) throws IOException, JSONException {
-
-        PlatformApiAccountBalanceApiResponse result = accountBalanceRestClientService.executeApi(bankAccontParamInputBin);
-        return new ResponseEntity<>(result.getPayload(), HttpStatus.OK);
+    public ResponseEntity<AccountBalance> executeApi(BankAccontParamInputBin bankAccontParamInputBin) throws IOException, JSONException {
+        return retrieveBalance(bankAccontParamInputBin);
     }
 
-
-
+    private ResponseEntity<AccountBalance> retrieveBalance(BankAccontParamInputBin bankAccontParamInputBin) throws IOException, JSONException {
+        PlatformApiAccountBalanceApiResponse result = accountBalanceRestClientService.callApiRest(bankAccontParamInputBin);
+        return new ResponseEntity<>(result.getPayload(), HttpStatus.OK);
+    }
 
 }

@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class AccountTransactionRestClientService implements ClienteRestApi<PlatformApiTransactionsApiResponse, BankAccontParamInputBin> {
+public class AccountTransactionRestClientService implements ClientRestApi<PlatformApiTransactionsApiResponse, BankAccontParamInputBin> {
 
     Logger logger = LoggerFactory.getLogger(AccountTransactionRestClientService.class);
 
@@ -31,7 +31,7 @@ public class AccountTransactionRestClientService implements ClienteRestApi<Platf
     @Value("${platformapifabrick.accountransactions.url}")
     private String urlTemplate;
 
-    public PlatformApiTransactionsApiResponse executeApi(BankAccontParamInputBin bankAccontParamInputBin) throws IOException, JSONException {
+    public PlatformApiTransactionsApiResponse callApiRest(BankAccontParamInputBin bankAccontParamInputBin) throws IOException, JSONException {
         HttpEntity response = httpClientService.executeGet(prepareHttpClientRequestBin(bankAccontParamInputBin, urlTemplate));
         return preparePlatformApiResponse(response);
     }

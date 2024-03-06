@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class AccountBalanceRestClientService implements ClienteRestApi<PlatformApiAccountBalanceApiResponse, BankAccontParamInputBin> {
+public class AccountBalanceRestClientService implements ClientRestApi<PlatformApiAccountBalanceApiResponse, BankAccontParamInputBin> {
 
     @Autowired
     private HttpClientService httpClientService;
@@ -24,7 +24,7 @@ public class AccountBalanceRestClientService implements ClienteRestApi<PlatformA
     @Value("${platformapifabrick.accountBalance.url}")
     private String urlTemplate;
 
-    public PlatformApiAccountBalanceApiResponse executeApi(BankAccontParamInputBin bankAccontParamInputBin) throws IOException, JSONException {
+    public PlatformApiAccountBalanceApiResponse callApiRest(BankAccontParamInputBin bankAccontParamInputBin) throws IOException, JSONException {
         HttpEntity response = httpClientService.executeGet(prepareHttpClientRequestBin(bankAccontParamInputBin, urlTemplate));
         return preparePlatformApiResponse(response);
     }

@@ -4,9 +4,9 @@ import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
 import com.esercizio.backend.fabrick.model.api.AccountBalance;
 import com.esercizio.backend.fabrick.model.api.ExecuteBankTransferResponse;
 import com.esercizio.backend.fabrick.model.dto.BankTransferDto;
-import com.esercizio.backend.fabrick.service.AccountBalanceService;
-import com.esercizio.backend.fabrick.service.BankTransferService;
-import com.esercizio.backend.fabrick.service.AccountTransactionsService;
+import com.esercizio.backend.fabrick.service.api.AccountBalanceApiService;
+import com.esercizio.backend.fabrick.service.api.BankTransferApiService;
+import com.esercizio.backend.fabrick.service.api.AccountTransactionsApiService;
 import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,13 +26,13 @@ public class BankAccountController {
     Logger logger = LoggerFactory.getLogger(BankAccountController.class);
 
     @Autowired
-    private AccountBalanceService accountBalanceService;
+    private AccountBalanceApiService accountBalanceApiService;
 
     @Autowired
-    private AccountTransactionsService accountTransactionsService;
+    private AccountTransactionsApiService accountTransactionsApiService;
 
     @Autowired
-    private BankTransferService bankTransferService;
+    private BankTransferApiService bankTransferApiService;
 
 
     @GetMapping(value = "/{idAccount}/balance")
@@ -41,7 +41,7 @@ public class BankAccountController {
                                                      @RequestHeader(value = "Auth-Schema") String authSchema,
                                                      @RequestHeader(value = "Api-Key") String apiKey) throws IOException, JSONException {
         logger.info("GET /banckaccount/{}/balance - REQUEST", idAccount);
-        ResponseEntity response = accountBalanceService.retrieveBalance(BankAccontParamInputBin.builder()
+        ResponseEntity response = accountBalanceApiService.executeApi(BankAccontParamInputBin.builder()
                 .idAccount(idAccount)
                 .contentType(contentType)
                 .authSchema(authSchema)
@@ -59,7 +59,7 @@ public class BankAccountController {
                                           @RequestHeader(value = "Auth-Schema") String authSchema,
                                           @RequestHeader(value = "Api-Key") String apiKey) throws IOException, JSONException {
         logger.info("GET /banckaccount/{}/transactions - REQUEST", idAccount);
-        ResponseEntity response = accountTransactionsService.retrieveAccountTransactions(BankAccontParamInputBin.builder()
+        ResponseEntity response = accountTransactionsApiService.executeApi(BankAccontParamInputBin.builder()
                 .idAccount(idAccount)
                 .contentType(contentType)
                 .authSchema(authSchema)
@@ -78,7 +78,7 @@ public class BankAccountController {
                                                                         @RequestHeader(value = "Auth-Schema") String authSchema,
                                                                         @RequestHeader(value = "Api-Key") String apiKey) {
         logger.info("POST /banckaccount/{}/banktransfer - REQUEST with DTO={}", idAccount, bankTransferDto);
-        ResponseEntity response = bankTransferService.executeBankTransfer(bankTransferDto);
+        ResponseEntity response = bankTransferApiService.executeBankTransfer(bankTransferDto);
         logger.info("POST /banckaccount/{}/banktransfer - RESPONSE = {} and DTO={}", idAccount, response, bankTransferDto);
         return response;
     }

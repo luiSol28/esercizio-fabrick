@@ -1,7 +1,8 @@
-package com.esercizio.backend.fabrick.service;
+package com.esercizio.backend.fabrick.service.api;
 
 import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
 import com.esercizio.backend.fabrick.entity.RequestAccountTransactionEntity;
+import com.esercizio.backend.fabrick.model.api.AccountBalance;
 import com.esercizio.backend.fabrick.model.api.PlatformApiTransactionsApiResponse;
 import com.esercizio.backend.fabrick.model.api.AccountTransactionsResponse;
 import com.esercizio.backend.fabrick.service.clientRepository.AccountTransactionsRepositoryService;
@@ -18,7 +19,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class AccountTransactionsService {
+public class AccountTransactionsApiService implements RestApi<ResponseEntity<AccountTransactionsResponse>, BankAccontParamInputBin> {
 
     @Autowired
     private AccountTransactionsRepositoryService accountTransactionsRepositoryService;
@@ -26,13 +27,12 @@ public class AccountTransactionsService {
     @Autowired
     private AccountTransactionRestClientService accountTransactionRestClientService;
 
-    public ResponseEntity<AccountTransactionsResponse> retrieveAccountTransactions(BankAccontParamInputBin bankAccontParamInputBin) throws IOException, JSONException {
-
+    public ResponseEntity<AccountTransactionsResponse> executeApi(BankAccontParamInputBin bankAccontParamInputBin) throws IOException, JSONException {
         String fromAccountingDate = bankAccontParamInputBin.getFromAccountingDate();
         List<RequestAccountTransactionEntity> accountTransactions = accountTransactionsRepositoryService.retrieveAccountTransactionFromDB(bankAccontParamInputBin);
         if (accountTransactions.isEmpty() ||
                 (fromAccountingDate != null && fromAccountingDate.equals(LocalDate.now().toString()))) {
-            PlatformApiTransactionsApiResponse result = accountTransactionRestClientService.executeApi(bankAccontParamInputBin);
+            PlatformApiTransactionsApiResponse result = accountTransactionRestClientService.callApiRest(bankAccontParamInputBin);
             if (result.getPayload() != null) {
                 accountTransactionsRepositoryService.saveAccountTransactionToDB(result, bankAccontParamInputBin);
             }
