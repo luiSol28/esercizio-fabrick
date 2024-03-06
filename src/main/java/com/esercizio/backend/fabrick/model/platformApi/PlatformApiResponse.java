@@ -1,9 +1,7 @@
-package com.esercizio.backend.fabrick.model.api;
+package com.esercizio.backend.fabrick.model.platformApi;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.List;
 
 public class PlatformApiResponse {
 
@@ -12,5 +10,5 @@ public class PlatformApiResponse {
 
     @JsonProperty("errors")
     @JsonAlias("error")
-    private List<PlatformErrorApiResponse> errors;
+    private PlatformErrorApiResponse[] errors;
 }

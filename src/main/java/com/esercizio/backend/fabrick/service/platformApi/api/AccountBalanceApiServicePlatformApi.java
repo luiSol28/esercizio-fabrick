@@ -1,9 +1,9 @@
-package com.esercizio.backend.fabrick.service.api;
+package com.esercizio.backend.fabrick.service.platformApi.api;
 
 import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
 import com.esercizio.backend.fabrick.model.api.AccountBalance;
-import com.esercizio.backend.fabrick.model.api.PlatformApiAccountBalanceApiResponse;
-import com.esercizio.backend.fabrick.service.clientRest.AccountBalanceRestClientService;
+import com.esercizio.backend.fabrick.model.platformApi.PlatformApiAccountBalanceApiResponse;
+import com.esercizio.backend.fabrick.service.platformApi.clientRest.AccountBalanceRestClientService;
 import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,9 +15,9 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 
 @Service
-public class AccountBalanceApiService implements RestApi<ResponseEntity<AccountBalance>,BankAccontParamInputBin > {
+public class AccountBalanceApiServicePlatformApi implements PlatformApiRestApi<ResponseEntity<AccountBalance>,BankAccontParamInputBin > {
 
-    Logger logger = LoggerFactory.getLogger(AccountBalanceApiService.class);
+    Logger logger = LoggerFactory.getLogger(AccountBalanceApiServicePlatformApi.class);
 
     @Autowired
     private AccountBalanceRestClientService accountBalanceRestClientService;

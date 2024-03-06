@@ -1,4 +1,4 @@
-package com.esercizio.backend.fabrick.model.dto;
+package com.esercizio.backend.fabrick.model.dto.clientRest;
 
 import com.esercizio.backend.fabrick.model.api.Creditor;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -7,12 +7,11 @@ import lombok.Data;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
-public class BankTransferDto {
+public class BankTransferClentRestDto {
 
     @NotNull
     @Valid

@@ -1,12 +1,11 @@
-package com.esercizio.backend.fabrick.service.api;
+package com.esercizio.backend.fabrick.service.platformApi.api;
 
 import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
 import com.esercizio.backend.fabrick.entity.RequestAccountTransactionEntity;
-import com.esercizio.backend.fabrick.model.api.AccountBalance;
-import com.esercizio.backend.fabrick.model.api.PlatformApiTransactionsApiResponse;
+import com.esercizio.backend.fabrick.model.platformApi.PlatformApiTransactionsApiResponse;
 import com.esercizio.backend.fabrick.model.api.AccountTransactionsResponse;
-import com.esercizio.backend.fabrick.service.clientRepository.AccountTransactionsRepositoryService;
-import com.esercizio.backend.fabrick.service.clientRest.AccountTransactionRestClientService;
+import com.esercizio.backend.fabrick.repository.AccountTransactionsRepositoryService;
+import com.esercizio.backend.fabrick.service.platformApi.clientRest.AccountTransactionRestClientService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class AccountTransactionsApiService implements RestApi<ResponseEntity<AccountTransactionsResponse>, BankAccontParamInputBin> {
+public class AccountTransactionsApiServicePlatformApi implements PlatformApiRestApi<ResponseEntity<AccountTransactionsResponse>, BankAccontParamInputBin> {
 
     @Autowired
     private AccountTransactionsRepositoryService accountTransactionsRepositoryService;

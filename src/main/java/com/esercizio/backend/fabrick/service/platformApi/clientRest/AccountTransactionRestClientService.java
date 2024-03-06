@@ -1,12 +1,11 @@
-package com.esercizio.backend.fabrick.service.clientRest;
+package com.esercizio.backend.fabrick.service.platformApi.clientRest;
 
 import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
 import com.esercizio.backend.fabrick.bin.HttpClientRequestBin;
-import com.esercizio.backend.fabrick.model.api.PlatformApiTransactionsApiResponse;
+import com.esercizio.backend.fabrick.model.platformApi.PlatformApiTransactionsApiResponse;
 import com.esercizio.backend.fabrick.service.common.HttpClientService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpEntity;
-import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class AccountTransactionRestClientService implements ClientRestApi<PlatformApiTransactionsApiResponse, BankAccontParamInputBin> {
+public class AccountTransactionRestClientService implements com.esercizio.backend.fabrick.service.platformApi.clientRest.ClientRestApi<PlatformApiTransactionsApiResponse, BankAccontParamInputBin> {
 
     Logger logger = LoggerFactory.getLogger(AccountTransactionRestClientService.class);
 
@@ -31,7 +30,7 @@ public class AccountTransactionRestClientService implements ClientRestApi<Platfo
     @Value("${platformapifabrick.accountransactions.url}")
     private String urlTemplate;
 
-    public PlatformApiTransactionsApiResponse callApiRest(BankAccontParamInputBin bankAccontParamInputBin) throws IOException, JSONException {
+    public PlatformApiTransactionsApiResponse callApiRest(BankAccontParamInputBin bankAccontParamInputBin) throws IOException {
         HttpEntity response = httpClientService.executeGet(prepareHttpClientRequestBin(bankAccontParamInputBin, urlTemplate));
         return preparePlatformApiResponse(response);
     }
@@ -52,7 +51,7 @@ public class AccountTransactionRestClientService implements ClientRestApi<Platfo
                 .urlTemplate(urlTemplate)
                 .queryParam(prepareQueryParamMap(bankAccontParamInputBin))
                 .uriParam(prepareUriParamMap(bankAccontParamInputBin))
-                .header(UtilityClassRestClient.prepareHeaderMap(bankAccontParamInputBin))
+                .header(com.esercizio.backend.fabrick.service.platformApi.clientRest.UtilityClassRestClient.prepareHeaderMap(bankAccontParamInputBin))
                 .build();
     }
 
@@ -74,6 +73,5 @@ public class AccountTransactionRestClientService implements ClientRestApi<Platfo
         }
         return queryParam;
     }
-
 
 }

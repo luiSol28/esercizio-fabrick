@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class Creditor {
+public class Debtor {
 
     @NotNull
     @NotEmpty
@@ -16,7 +16,4 @@ public class Creditor {
     @NotNull
     @Valid
     private CreditorAccount account;
-
-    private CreditorAddress address;
-
 }

@@ -3,9 +3,10 @@ package com.esercizio.backend.fabrick.model.api;
 import lombok.Data;
 
 @Data
-public class PlatformErrorApiResponse {
+public class Fees {
 
-    private String code;
+    private String feeCode;
     private String description;
-    private String params;
+    private String amount;
+    private String currency;
 }

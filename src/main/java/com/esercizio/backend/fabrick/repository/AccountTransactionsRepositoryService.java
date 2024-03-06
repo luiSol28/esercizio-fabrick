@@ -1,10 +1,9 @@
-package com.esercizio.backend.fabrick.service.clientRepository;
+package com.esercizio.backend.fabrick.repository;
 
 import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
 import com.esercizio.backend.fabrick.entity.RequestAccountTransactionEntity;
 import com.esercizio.backend.fabrick.mapper.AccountTransactionMapper;
-import com.esercizio.backend.fabrick.model.api.PlatformApiTransactionsApiResponse;
-import com.esercizio.backend.fabrick.repository.AccountTransactionsRepository;
+import com.esercizio.backend.fabrick.model.platformApi.PlatformApiTransactionsApiResponse;
 import com.esercizio.backend.fabrick.specification.RequestAccountTransactionSpecification;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,10 +11,8 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service

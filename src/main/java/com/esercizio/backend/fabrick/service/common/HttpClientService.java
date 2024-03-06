@@ -1,7 +1,7 @@
 package com.esercizio.backend.fabrick.service.common;
 
 import com.esercizio.backend.fabrick.bin.HttpClientRequestBin;
-import com.esercizio.backend.fabrick.service.clientRest.UtilityClassRestClient;
+import com.esercizio.backend.fabrick.service.platformApi.clientRest.UtilityClassRestClient;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -26,35 +26,27 @@ public class HttpClientService {
     Logger logger = LoggerFactory.getLogger(HttpClientService.class);
 
     public HttpEntity executeGet(HttpClientRequestBin httpClientRequestBin) throws IOException {
-
         String url = buildUri(httpClientRequestBin);
-        logger.info("HttpClientService - GET: {}", url);
-
         final HttpGet httpGet = new HttpGet(url);
         UtilityClassRestClient.setHttpRequestHeaders(httpGet, httpClientRequestBin.getHeader());
-
         CloseableHttpClient client = HttpClients.createDefault();
+        logger.info("HttpClientService - GET: {}, HEADER: {}", url, httpGet.getAllHeaders());
         CloseableHttpResponse response = client.execute(httpGet);
-
         logger.info("HttpClientService -  response: {}", response.getEntity());
-
         return response.getEntity();
-
     }
 
-    public CloseableHttpResponse executePost(String URL, String jsonBody) throws IOException {
-
-        final HttpPost httpPost = new HttpPost(URL);
-        final StringEntity entity = new StringEntity(jsonBody);
+    public HttpEntity executePost(HttpClientRequestBin httpClientRequestBin) throws IOException {
+        String url = buildUri(httpClientRequestBin);
+        final HttpPost httpPost = new HttpPost(url);
+        final StringEntity entity = new StringEntity(httpClientRequestBin.getPayload());
         httpPost.setEntity(entity);
-        httpPost.setHeader("Accept", "application/json");
-        httpPost.setHeader("Content-type", "application/json");
-
-        try (CloseableHttpClient client = HttpClients.createDefault();
-             CloseableHttpResponse response = client
-                     .execute(httpPost)) {
-            return response;
-        }
+        UtilityClassRestClient.setHttpRequestHeaders(httpPost, httpClientRequestBin.getHeader());
+        logger.info("HttpClientService - POST: {} PAYLOAD: {} HEADERS: ", url, httpPost.getEntity(), httpPost.getAllHeaders());
+        CloseableHttpClient client = HttpClients.createDefault();
+        CloseableHttpResponse response = client.execute(httpPost);
+        logger.info("OUTPUT: {}", response.getEntity().getContent().toString());
+        return response.getEntity();
     }
 
 

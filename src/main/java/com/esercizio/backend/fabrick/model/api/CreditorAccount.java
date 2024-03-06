@@ -12,5 +12,5 @@ public class CreditorAccount {
     @NotEmpty
     private String accountCode;
 
-    private String bicCode;
+    private String bicCode = "";
 }

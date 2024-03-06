@@ -1,8 +1,8 @@
-package com.esercizio.backend.fabrick.service.clientRest;
+package com.esercizio.backend.fabrick.service.platformApi.clientRest;
 
 import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
 import com.esercizio.backend.fabrick.bin.HttpClientRequestBin;
-import com.esercizio.backend.fabrick.model.api.PlatformApiAccountBalanceApiResponse;
+import com.esercizio.backend.fabrick.model.platformApi.PlatformApiAccountBalanceApiResponse;
 import com.esercizio.backend.fabrick.service.common.HttpClientService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpEntity;
@@ -43,7 +43,7 @@ public class AccountBalanceRestClientService implements ClientRestApi<PlatformAp
         return HttpClientRequestBin.builder()
                 .urlTemplate(urlTemplate)
                 .uriParam(prepareUriParamMap(bankAccontParamInputBin))
-                .header(UtilityClassRestClient.prepareHeaderMap(bankAccontParamInputBin))
+                .header(com.esercizio.backend.fabrick.service.platformApi.clientRest.UtilityClassRestClient.prepareHeaderMap(bankAccontParamInputBin))
                 .build();
     }
 

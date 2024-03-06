@@ -13,4 +13,5 @@ public class HttpClientRequestBin {
     private MultiValueMap<String, String> queryParam;
     private Map<String, String> uriParam;
     private Map<String, String> header;
+    private String payload;
 }

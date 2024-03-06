@@ -1,5 +1,6 @@
-package com.esercizio.backend.fabrick.model.api;
+package com.esercizio.backend.fabrick.model.platformApi;
 
+import com.esercizio.backend.fabrick.model.api.AccountBalance;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 

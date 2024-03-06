@@ -1,4 +1,4 @@
-package com.esercizio.backend.fabrick.service.clientRest;
+package com.esercizio.backend.fabrick.service.platformApi.clientRest;
 
 import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
 import org.apache.http.client.methods.HttpRequestBase;
