@@ -15,9 +15,9 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 
 @Service
-public class BalanceService {
+public class AccountBalanceService {
 
-    Logger logger = LoggerFactory.getLogger(BalanceService.class);
+    Logger logger = LoggerFactory.getLogger(AccountBalanceService.class);
 
     @Autowired
     private AccountBalanceRestClientRest accountBalanceRestClientRest;
