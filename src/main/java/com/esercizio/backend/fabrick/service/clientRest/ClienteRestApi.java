@@ -1,4 +1,4 @@
-package com.esercizio.backend.fabrick.service.common;
+package com.esercizio.backend.fabrick.service.clientRest;
 
 import com.esercizio.backend.fabrick.bin.HttpClientRequestBin;
 import org.json.JSONException;

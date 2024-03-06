@@ -3,9 +3,7 @@ package com.esercizio.backend.fabrick.service.clientRest;
 import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
 import com.esercizio.backend.fabrick.bin.HttpClientRequestBin;
 import com.esercizio.backend.fabrick.model.api.PlatformApiAccountBalanceApiResponse;
-import com.esercizio.backend.fabrick.service.common.ClienteRestApi;
 import com.esercizio.backend.fabrick.service.common.HttpClientService;
-import com.esercizio.backend.fabrick.service.common.UtilityClass;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpEntity;
 import org.json.JSONException;
@@ -18,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class AccountBalanceRestClientRest implements ClienteRestApi<PlatformApiAccountBalanceApiResponse, BankAccontParamInputBin> {
+public class AccountBalanceRestClientService implements ClienteRestApi<PlatformApiAccountBalanceApiResponse, BankAccontParamInputBin> {
 
     @Autowired
     private HttpClientService httpClientService;
@@ -32,7 +30,7 @@ public class AccountBalanceRestClientRest implements ClienteRestApi<PlatformApiA
     }
 
     private PlatformApiAccountBalanceApiResponse preparePlatformApiResponse(HttpEntity response) throws IOException {
-        String resultString = UtilityClass.convertStreamToString(response.getContent());
+        String resultString = UtilityClassRestClient.convertStreamToString(response.getContent());
         return covertObjectInJSON(resultString);
     }
 
@@ -45,7 +43,7 @@ public class AccountBalanceRestClientRest implements ClienteRestApi<PlatformApiA
         return HttpClientRequestBin.builder()
                 .urlTemplate(urlTemplate)
                 .uriParam(prepareUriParamMap(bankAccontParamInputBin))
-                .header(UtilityClass.prepareHeaderMap(bankAccontParamInputBin))
+                .header(UtilityClassRestClient.prepareHeaderMap(bankAccontParamInputBin))
                 .build();
     }
 

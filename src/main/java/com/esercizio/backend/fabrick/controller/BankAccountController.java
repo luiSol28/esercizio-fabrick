@@ -64,8 +64,8 @@ public class BankAccountController {
                 .contentType(contentType)
                 .authSchema(authSchema)
                 .apiKey(apiKey)
-                .fromAccountingDate(fromAccountingDate)
-                .toAccountingDate(toAccountingDate)
+                .fromAccountingDate(fromAccountingDate.toString())
+                .toAccountingDate(toAccountingDate.toString())
                 .build());
         logger.info("GET /banckaccount/{}/transactions - RESPONSE = {}", idAccount, response);
         return response;

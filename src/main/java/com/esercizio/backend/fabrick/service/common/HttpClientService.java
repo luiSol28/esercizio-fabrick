@@ -1,6 +1,7 @@
 package com.esercizio.backend.fabrick.service.common;
 
 import com.esercizio.backend.fabrick.bin.HttpClientRequestBin;
+import com.esercizio.backend.fabrick.service.clientRest.UtilityClassRestClient;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -8,7 +9,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,6 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,13 +25,13 @@ public class HttpClientService {
 
     Logger logger = LoggerFactory.getLogger(HttpClientService.class);
 
-    public HttpEntity executeGet(HttpClientRequestBin httpClientRequestBin) throws IOException, JSONException {
+    public HttpEntity executeGet(HttpClientRequestBin httpClientRequestBin) throws IOException {
 
         String url = buildUri(httpClientRequestBin);
         logger.info("HttpClientService - GET: {}", url);
 
         final HttpGet httpGet = new HttpGet(url);
-        UtilityClass.setHttpRequestHeaders(httpGet, httpClientRequestBin.getHeader());
+        UtilityClassRestClient.setHttpRequestHeaders(httpGet, httpClientRequestBin.getHeader());
 
         CloseableHttpClient client = HttpClients.createDefault();
         CloseableHttpResponse response = client.execute(httpGet);

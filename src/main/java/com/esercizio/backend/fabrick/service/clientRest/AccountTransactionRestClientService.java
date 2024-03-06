@@ -2,15 +2,8 @@ package com.esercizio.backend.fabrick.service.clientRest;
 
 import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
 import com.esercizio.backend.fabrick.bin.HttpClientRequestBin;
-import com.esercizio.backend.fabrick.entity.AccountTransactionEntity;
-import com.esercizio.backend.fabrick.model.api.PlatformApiAccountBalanceApiResponse;
 import com.esercizio.backend.fabrick.model.api.PlatformApiTransactionsApiResponse;
-import com.esercizio.backend.fabrick.repository.AccountTransactionsRepository;
-import com.esercizio.backend.fabrick.service.AccountBalanceService;
-import com.esercizio.backend.fabrick.service.clientRepository.AccountTransactionsRepositoryService;
-import com.esercizio.backend.fabrick.service.common.ClienteRestApi;
 import com.esercizio.backend.fabrick.service.common.HttpClientService;
-import com.esercizio.backend.fabrick.service.common.UtilityClass;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpEntity;
 import org.json.JSONException;
@@ -25,13 +18,12 @@ import org.springframework.util.MultiValueMap;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
-public class AccountTransactionRestClientRest implements ClienteRestApi<PlatformApiTransactionsApiResponse, BankAccontParamInputBin> {
+public class AccountTransactionRestClientService implements ClienteRestApi<PlatformApiTransactionsApiResponse, BankAccontParamInputBin> {
 
-    Logger logger = LoggerFactory.getLogger(AccountTransactionRestClientRest.class);
+    Logger logger = LoggerFactory.getLogger(AccountTransactionRestClientService.class);
 
     @Autowired
     private HttpClientService httpClientService;
@@ -46,7 +38,7 @@ public class AccountTransactionRestClientRest implements ClienteRestApi<Platform
 
 
     private PlatformApiTransactionsApiResponse preparePlatformApiResponse(HttpEntity response) throws IOException {
-        String resultString = UtilityClass.convertStreamToString(response.getContent());
+        String resultString = UtilityClassRestClient.convertStreamToString(response.getContent());
         return covertObjectInJSON(resultString);
     }
 
@@ -60,7 +52,7 @@ public class AccountTransactionRestClientRest implements ClienteRestApi<Platform
                 .urlTemplate(urlTemplate)
                 .queryParam(prepareQueryParamMap(bankAccontParamInputBin))
                 .uriParam(prepareUriParamMap(bankAccontParamInputBin))
-                .header(UtilityClass.prepareHeaderMap(bankAccontParamInputBin))
+                .header(UtilityClassRestClient.prepareHeaderMap(bankAccontParamInputBin))
                 .build();
     }
 

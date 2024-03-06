@@ -12,6 +12,7 @@ public class BankAccontParamInputBin {
     private String contentType;
     private String authSchema;
     private String apiKey;
-    private LocalDate fromAccountingDate;
-    private LocalDate toAccountingDate;
+    private String toAccountingDate;
+    private String fromAccountingDate;
+
 }

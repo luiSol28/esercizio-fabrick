@@ -1,4 +1,4 @@
-package com.esercizio.backend.fabrick.service.common;
+package com.esercizio.backend.fabrick.service.clientRest;
 
 import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
 import org.apache.http.client.methods.HttpRequestBase;
@@ -14,9 +14,9 @@ import java.util.Map;
 
 
 @lombok.experimental.UtilityClass
-public class UtilityClass {
+public class UtilityClassRestClient {
 
-    Logger logger = LoggerFactory.getLogger(UtilityClass.class);
+    Logger logger = LoggerFactory.getLogger(UtilityClassRestClient.class);
 
     public static String convertStreamToString(InputStream is) {
 

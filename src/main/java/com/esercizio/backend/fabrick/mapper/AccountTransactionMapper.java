@@ -1,16 +1,16 @@
 package com.esercizio.backend.fabrick.mapper;
 
-import com.esercizio.backend.fabrick.entity.AccountTransactionEntity;
-import com.esercizio.backend.fabrick.model.api.AccountTransaction;
-import com.esercizio.backend.fabrick.service.AccountTransactionsService;
+
+import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
+import com.esercizio.backend.fabrick.entity.RequestAccountTransactionEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", uses= AccountTransactionsService.class)
+@Mapper(componentModel = "spring")
 public interface AccountTransactionMapper {
 
-    AccountTransactionEntity fromAccountTransactionsResponseToAccountTransactionEntity(AccountTransaction accountTransaction, String idAccount);
-
-    AccountTransaction fromAccountTransactionEntityToAccountTransactionsResponse(AccountTransactionEntity accountTransactionEntity);
-
+    @Mapping(target = "idaccount", source = "bankAccontParamInputBin.idAccount")
+    @Mapping(target = "fromaccountingdate", source = "bankAccontParamInputBin.fromAccountingDate")
+    @Mapping(target = "toaccountingdate", source = "bankAccontParamInputBin.toAccountingDate")
+    RequestAccountTransactionEntity fromtoAccountTransactionEntity (BankAccontParamInputBin bankAccontParamInputBin);
 }
