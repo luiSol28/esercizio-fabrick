@@ -1,0 +1,411 @@
+{
+  "status": "OK",
+  "error": [],
+  "payload": {
+    "list": [
+      {
+        "transactionId": "344558268000",
+        "operationId": "24000496954661",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -0.1,
+        "currency": "EUR",
+        "description": "BA TERRIBILE LUCA        REC 94748B390EF241F7ABFADAF8588D9CEE TEST CUTOFF"
+      },
+      {
+        "transactionId": "344557655101",
+        "operationId": "24000496952124",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557620301",
+        "operationId": "24000496952507",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557620101",
+        "operationId": "24000496951935",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557619901",
+        "operationId": "24000496951934",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557619801",
+        "operationId": "24000496952505",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557619501",
+        "operationId": "24000496951933",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557586301",
+        "operationId": "24000496952357",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557586201",
+        "operationId": "24000496952356",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557586101",
+        "operationId": "24000496951787",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557586001",
+        "operationId": "24000496952355",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557585901",
+        "operationId": "24000496951786",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557585701",
+        "operationId": "24000496952354",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557583901",
+        "operationId": "24000496952346",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557583701",
+        "operationId": "24000496951778",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557566501",
+        "operationId": "24000496952283",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557566301",
+        "operationId": "24000496951718",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557566201",
+        "operationId": "24000496952281",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557566001",
+        "operationId": "24000496952280",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557565901",
+        "operationId": "24000496952279",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557565301",
+        "operationId": "24000496952276",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557565101",
+        "operationId": "24000496952275",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557464601",
+        "operationId": "24000496951454",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557439501",
+        "operationId": "24000496950936",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557427701",
+        "operationId": "24000496950880",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557414601",
+        "operationId": "24000496951248",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344557198401",
+        "operationId": "24000496950093",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344556948201",
+        "operationId": "24000496947868",
+        "accountingDate": "2024-03-07",
+        "valueDate": "2024-03-07",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344532217501",
+        "operationId": "24000496719668",
+        "accountingDate": "2024-03-05",
+        "valueDate": "2024-03-05",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0009"
+        },
+        "amount": -1,
+        "currency": "EUR",
+        "description": "BA SOLITRO LUIGI          PROVA BONIFICO"
+      },
+      {
+        "transactionId": "344532120100",
+        "operationId": "24000496718911",
+        "accountingDate": "2024-03-05",
+        "valueDate": "2024-03-05",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0034"
+        },
+        "amount": 50000,
+        "currency": "EUR",
+        "description": "GC CARICO FONDI"
+      },
+      {
+        "transactionId": "344109613500",
+        "operationId": "24000493740101",
+        "accountingDate": "2024-03-01",
+        "valueDate": "2024-03-01",
+        "type": {
+          "enumeration": "GBS_TRANSACTION_TYPE",
+          "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0016"
+        },
+        "amount": -1.5,
+        "currency": "EUR",
+        "description": "CO UTILZ @PRITISELLA"
+      }
+    ]
+  }
+}

@@ -5,10 +5,7 @@ import org.apache.http.client.methods.HttpRequestBase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,7 +36,6 @@ public class UtilityClassRestClient {
         return sb.toString();
     }
 
-
     public Map<String, String> prepareHeaderMap(BankAccontParamInputBin bankAccontParamInputBin) {
         Map<String, String> headerMap = new HashMap<>();
         headerMap.put("Content-Type", bankAccontParamInputBin.getContentType());
@@ -53,4 +49,5 @@ public class UtilityClassRestClient {
                 key -> httpRequestBase.setHeader(key,header.get(key))
         );
     }
+
 }

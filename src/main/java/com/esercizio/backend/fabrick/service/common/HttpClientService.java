@@ -42,10 +42,10 @@ public class HttpClientService {
         final StringEntity entity = new StringEntity(httpClientRequestBin.getPayload());
         httpPost.setEntity(entity);
         UtilityClassRestClient.setHttpRequestHeaders(httpPost, httpClientRequestBin.getHeader());
-        logger.info("HttpClientService - POST: {} PAYLOAD: {} HEADERS: ", url, httpPost.getEntity(), httpPost.getAllHeaders());
+        logger.info("HttpClientService - POST: {} PAYLOAD: {} HEADERS: {}", url, httpPost.getEntity(), httpPost.getAllHeaders());
         CloseableHttpClient client = HttpClients.createDefault();
         CloseableHttpResponse response = client.execute(httpPost);
-        logger.info("OUTPUT: {}", response.getEntity().getContent().toString());
+        logger.info("OUTPUT: {}", response.getEntity().getContent());
         return response.getEntity();
     }
 

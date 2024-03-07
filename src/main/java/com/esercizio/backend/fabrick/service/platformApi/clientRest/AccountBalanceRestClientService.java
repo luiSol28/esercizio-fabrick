@@ -5,10 +5,14 @@ import com.esercizio.backend.fabrick.bin.HttpClientRequestBin;
 import com.esercizio.backend.fabrick.model.platformApi.PlatformApiAccountBalanceApiResponse;
 import com.esercizio.backend.fabrick.service.common.HttpClientService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.experimental.UtilityClass;
 import org.apache.http.HttpEntity;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -24,9 +28,19 @@ public class AccountBalanceRestClientService implements ClientRestApi<PlatformAp
     @Value("${platformapifabrick.accountBalance.url}")
     private String urlTemplate;
 
+    @Value("${platformapifabrick.accountBalance.mock}")
+    private Boolean mock;
+
+    @Autowired
+    private ResourceLoader resourceLoader;
+
     public PlatformApiAccountBalanceApiResponse callApiRest(BankAccontParamInputBin bankAccontParamInputBin) throws IOException, JSONException {
-        HttpEntity response = httpClientService.executeGet(prepareHttpClientRequestBin(bankAccontParamInputBin, urlTemplate));
-        return preparePlatformApiResponse(response);
+        if (Boolean.TRUE.equals(mock)) {
+            HttpEntity response = httpClientService.executeGet(prepareHttpClientRequestBin(bankAccontParamInputBin, urlTemplate));
+            return preparePlatformApiResponse(response);
+        } else {
+            return covertObjectInJSONMock();
+        }
     }
 
     private PlatformApiAccountBalanceApiResponse preparePlatformApiResponse(HttpEntity response) throws IOException {
@@ -37,6 +51,12 @@ public class AccountBalanceRestClientService implements ClientRestApi<PlatformAp
     private PlatformApiAccountBalanceApiResponse covertObjectInJSON(String jsonString) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(jsonString, PlatformApiAccountBalanceApiResponse.class);
+    }
+
+    private PlatformApiAccountBalanceApiResponse covertObjectInJSONMock() throws IOException {
+        final Resource fileResource = resourceLoader.getResource("classpath:mock/PlatformApiAccountBalanceMock.json");
+        String jsonString = UtilityClassRestClient.convertStreamToString(fileResource.getInputStream());
+        return covertObjectInJSON(jsonString);
     }
 
     public HttpClientRequestBin prepareHttpClientRequestBin(BankAccontParamInputBin bankAccontParamInputBin, String urlTemplate) {

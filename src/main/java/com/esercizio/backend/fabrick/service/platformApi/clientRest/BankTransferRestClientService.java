@@ -4,6 +4,7 @@ import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
 import com.esercizio.backend.fabrick.bin.HttpClientRequestBin;
 import com.esercizio.backend.fabrick.model.platformApi.PlatformApiExecuteBankTransferApiResponse;
 import com.esercizio.backend.fabrick.model.dto.api.BankTransferDto;
+import com.esercizio.backend.fabrick.model.platformApi.PlatformApiTransactionsApiResponse;
 import com.esercizio.backend.fabrick.service.common.HttpClientService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,6 +13,8 @@ import org.apache.http.HttpEntity;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -27,9 +30,20 @@ public class BankTransferRestClientService implements ClientRestApi<PlatformApiE
     @Value("${platformapifabrick.moneytransfer.url}")
     private String urlTemplate;
 
+    @Value("${platformapifabrick.moneytransfer.mock}")
+    private Boolean mock;
+
+    @Autowired
+    private ResourceLoader resourceLoader;
+
     public PlatformApiExecuteBankTransferApiResponse callApiRest(BankAccontParamInputBin bankAccontParamInputBin) throws IOException, JSONException {
-        HttpEntity response = httpClientService.executePost(prepareHttpClientRequestBin(bankAccontParamInputBin, urlTemplate));
-        return preparePlatformApiResponse(response);
+       if (Boolean.TRUE.equals(mock)) {
+           HttpEntity response = httpClientService.executePost(prepareHttpClientRequestBin(bankAccontParamInputBin, urlTemplate));
+           return preparePlatformApiResponse(response);
+       }
+       else
+           return covertObjectInJSONMock();
+
     }
 
     public HttpClientRequestBin prepareHttpClientRequestBin(BankAccontParamInputBin bankAccontParamInputBin, String urlTemplate) throws JsonProcessingException {
@@ -52,8 +66,14 @@ public class BankTransferRestClientService implements ClientRestApi<PlatformApiE
         return ow.writeValueAsString(bankTransferDto);
     }
 
+    private PlatformApiExecuteBankTransferApiResponse covertObjectInJSONMock() throws IOException {
+        final Resource fileResource = resourceLoader.getResource("classpath:mock/PlatformApiExecuteBankTransferApiResponseMock.json");
+        String jsonString = UtilityClassRestClient.convertStreamToString(fileResource.getInputStream());
+        return covertObjectInJSON(jsonString);
+    }
+
     private PlatformApiExecuteBankTransferApiResponse preparePlatformApiResponse(HttpEntity response) throws IOException {
-        String resultString = com.esercizio.backend.fabrick.service.platformApi.clientRest.UtilityClassRestClient.convertStreamToString(response.getContent());
+        String resultString = UtilityClassRestClient.convertStreamToString(response.getContent());
         return covertObjectInJSON(resultString);
     }
 

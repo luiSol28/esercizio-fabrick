@@ -1,0 +1,52 @@
+{
+  "status": "OK",
+  "errors": [],
+  "payload": {
+    "moneyTransferId": "519630009",
+    "cro": "",
+    "trn": "4199494680303268482231144430IT",
+    "status": "EXECUTED",
+    "uri": "NOTPROVIDED",
+    "direction": "OUTGOING",
+    "debtor": {
+      "name": "LUCA TERRIBILE",
+      "account": {
+        "accountCode": "IT40L0326822311052923800661",
+        "bicCode": "SELBIT2B"
+      }
+    },
+    "creditor": {
+      "name": "SOLITRO LUIGI",
+      "account": {
+        "accountCode": "IT81W0306909563100000090208",
+        "bicCode": "BCITITMMXXX"
+      }
+    },
+    "feeAccountId": "14537780",
+    "description": "PROVA BONIFICO",
+    "createdDatetime": "2024-03-08T00:45:42.103+0100",
+    "accountedDatetime": "2024-03-08T00:45:42.000+0100",
+    "debtorValueDate": "2024-03-08",
+    "creditorValueDate": "2024-03-11",
+    "amount": {
+      "debtorAmount": 1,
+      "debtorCurrency": "EUR",
+      "creditorAmount": 1,
+      "creditorCurrency": "EUR",
+      "creditorCurrencyDate": "2024-03-08",
+      "currencyRatio": 1
+    },
+    "isUrgent": false,
+    "isInstant": false,
+    "feeType": "SHA",
+    "fees": [
+      {
+        "feeCode": "BP050",
+        "description": "Comm. di bonifico ALTRA BANCA - API",
+        "amount": 0,
+        "currency": "EUR"
+      }
+    ],
+    "hasTaxRelief": false
+  }
+}
