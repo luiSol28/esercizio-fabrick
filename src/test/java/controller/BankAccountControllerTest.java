@@ -1,44 +1,46 @@
 package controller;
 
-import com.esercizio.backend.fabrick.controller.BankAccountController;
+import com.esercizio.backend.fabrick.Application;
+import com.esercizio.backend.fabrick.model.api.response.CashAccountBalanceResponse;
+import org.json.JSONException;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.*;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.time.LocalDate;
-
-//@ExtendWith(MockitoExtension.class)
+@ExtendWith(SpringExtension.class)
+@SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class BankAccountControllerTest {
 
-    Logger logger = LoggerFactory.getLogger(BankAccountControllerTest.class);
+    @LocalServerPort
+    private int port;
 
-    @InjectMocks
-    BankAccountController bankAccountController;
-
-    @Before
-    public void setup(){
-        MockitoAnnotations.initMocks(this);    }
-/*
-    @Test
-    public void test_getBalance_status_200_OK() {
-        logger.info("test_getBalance_status_200_OK");
-        ResponseEntity response = bankAccountController.getBalance("14537780");
-        Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);
-    }
+    TestRestTemplate restTemplate = new TestRestTemplate();
+    HttpHeaders headers = new HttpHeaders();
 
     @Test
-    public void test_getTransactions_status_200_OK() {
-        logger.info("test_getTransactions_status_200_OK");
-        ResponseEntity response = bankAccountController.getTransactions("14537780", LocalDate.MAX, LocalDate.now());
-        Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);
+    public void getCashAccountBalanceTest() throws JSONException {
+
+        headers.add("Content-Type", "application/json");
+        headers.add("Auth-Schema", "S2S");
+        headers.add("Api-Key", "FXOVVXXHVCPVPBZXIJOBGUGSKHDNFRRQJP");
+
+        HttpEntity entity = new HttpEntity(headers);
+        ResponseEntity<String> response = restTemplate.exchange(
+                createURLWithPort("/banckaccount/14537780/balance"),
+                HttpMethod.GET, entity, String.class);
+
+        Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
     }
-*/
+
+    private String createURLWithPort(String uri) {
+        return "http://localhost:" + port + uri;
+    }
+
 }

@@ -1,7 +1,6 @@
 package com.esercizio.backend.fabrick.controller;
 
 import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
-import com.esercizio.backend.fabrick.model.api.response.AccountBalanceResponse;
 import com.esercizio.backend.fabrick.model.api.response.AccountTransactionsResponse;
 import com.esercizio.backend.fabrick.model.api.response.CashAccountBalanceResponse;
 import com.esercizio.backend.fabrick.model.api.response.ExecuteBankTransferResponse;
@@ -38,7 +37,7 @@ public class BankAccountController {
 
 
     @GetMapping(value = "/{idAccount}/balance")
-    public ResponseEntity<CashAccountBalanceResponse> getBalance(@PathVariable String idAccount,
+    public ResponseEntity<CashAccountBalanceResponse> getCashAccountBalance(@PathVariable String idAccount,
                                                             @RequestHeader(value = "Content-Type") String contentType,
                                                             @RequestHeader(value = "Auth-Schema") String authSchema,
                                                             @RequestHeader(value = "Api-Key") String apiKey) throws IOException, JSONException {
