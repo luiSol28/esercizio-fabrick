@@ -1,9 +1,10 @@
 package com.esercizio.backend.fabrick.controller;
 
 import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
-import com.esercizio.backend.fabrick.model.api.AccountBalance;
-import com.esercizio.backend.fabrick.model.api.AccountTransactionsResponse;
-import com.esercizio.backend.fabrick.model.api.ExecuteBankTransferResponse;
+import com.esercizio.backend.fabrick.model.api.response.AccountBalanceResponse;
+import com.esercizio.backend.fabrick.model.api.response.AccountTransactionsResponse;
+import com.esercizio.backend.fabrick.model.api.response.CashAccountBalanceResponse;
+import com.esercizio.backend.fabrick.model.api.response.ExecuteBankTransferResponse;
 import com.esercizio.backend.fabrick.model.dto.api.BankTransferDto;
 import com.esercizio.backend.fabrick.service.platformApi.api.AccountBalanceApiServicePlatformApi;
 import com.esercizio.backend.fabrick.service.platformApi.api.BankTransferApiServicePlatformApi;
@@ -21,7 +22,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 @RestController
-@RequestMapping(value = "/banckaccount")
+@RequestMapping(value = "/banckaccount", consumes = "application/json", produces="application/json")
 public class BankAccountController {
 
     Logger logger = LoggerFactory.getLogger(BankAccountController.class);
@@ -37,12 +38,12 @@ public class BankAccountController {
 
 
     @GetMapping(value = "/{idAccount}/balance")
-    public ResponseEntity<AccountBalance> getBalance(@PathVariable String idAccount,
-                                                     @RequestHeader(value = "Content-Type") String contentType,
-                                                     @RequestHeader(value = "Auth-Schema") String authSchema,
-                                                     @RequestHeader(value = "Api-Key") String apiKey) throws IOException, JSONException {
+    public ResponseEntity<CashAccountBalanceResponse> getBalance(@PathVariable String idAccount,
+                                                            @RequestHeader(value = "Content-Type") String contentType,
+                                                            @RequestHeader(value = "Auth-Schema") String authSchema,
+                                                            @RequestHeader(value = "Api-Key") String apiKey) throws IOException, JSONException {
         logger.info("GET /banckaccount/{}/balance - REQUEST", idAccount);
-        ResponseEntity<AccountBalance> response = accountBalanceApiService.executeApi(BankAccontParamInputBin.builder()
+        ResponseEntity<CashAccountBalanceResponse> response = accountBalanceApiService.executeApi(BankAccontParamInputBin.builder()
                 .idAccount(idAccount)
                 .contentType(contentType)
                 .authSchema(authSchema)

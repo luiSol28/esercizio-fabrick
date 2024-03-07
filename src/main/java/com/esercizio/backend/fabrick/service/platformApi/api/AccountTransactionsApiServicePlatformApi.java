@@ -2,8 +2,10 @@ package com.esercizio.backend.fabrick.service.platformApi.api;
 
 import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
 import com.esercizio.backend.fabrick.entity.RequestAccountTransactionEntity;
+import com.esercizio.backend.fabrick.mapper.AccountTransactionMapper;
 import com.esercizio.backend.fabrick.model.platformApi.PlatformApiTransactionsApiResponse;
-import com.esercizio.backend.fabrick.model.api.AccountTransactionsResponse;
+import com.esercizio.backend.fabrick.model.api.response.AccountTransactionsResponse;
+import com.esercizio.backend.fabrick.model.platformApi.StatusPlatformApiResponseEnum;
 import com.esercizio.backend.fabrick.repository.AccountTransactionsRepositoryService;
 import com.esercizio.backend.fabrick.service.platformApi.clientRest.AccountTransactionRestClientService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,18 +28,23 @@ public class AccountTransactionsApiServicePlatformApi implements PlatformApiRest
     @Autowired
     private AccountTransactionRestClientService accountTransactionRestClientService;
 
+    @Autowired
+    private AccountTransactionMapper accountTransactionMapper;
+
     public ResponseEntity<AccountTransactionsResponse> executeApi(BankAccontParamInputBin bankAccontParamInputBin) throws IOException, JSONException {
         String fromAccountingDate = bankAccontParamInputBin.getFromAccountingDate();
         List<RequestAccountTransactionEntity> accountTransactions = accountTransactionsRepositoryService.retrieveAccountTransactionFromDB(bankAccontParamInputBin);
         if (accountTransactions.isEmpty() ||
                 (fromAccountingDate != null && fromAccountingDate.equals(LocalDate.now().toString()))) {
             PlatformApiTransactionsApiResponse result = accountTransactionRestClientService.callApiRest(bankAccontParamInputBin);
-            if (result.getPayload() != null) {
+            if (result.getPayload() != null && StatusPlatformApiResponseEnum.OK.equals(result.getStatus())) {
                 accountTransactionsRepositoryService.saveAccountTransactionToDB(result, bankAccontParamInputBin);
             }
-            return new ResponseEntity<>(result.getPayload(), HttpStatus.OK);
+            return new ResponseEntity<>(accountTransactionMapper.converterToAccountTransactionsResponse(result), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(preparePlayload(accountTransactions.get(0)).getPayload(), HttpStatus.OK);
+            return new ResponseEntity<>(
+                    accountTransactionMapper.converterToAccountTransactionsResponse(preparePlayload(accountTransactions.get(0)))
+                    , HttpStatus.OK);
         }
     }
 

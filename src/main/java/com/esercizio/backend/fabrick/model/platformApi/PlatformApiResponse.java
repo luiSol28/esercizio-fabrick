@@ -2,13 +2,16 @@ package com.esercizio.backend.fabrick.model.platformApi;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
-public class PlatformApiResponse {
+@Data
+public abstract class PlatformApiResponse {
 
     @JsonProperty("status")
-    private String status;
+    private StatusPlatformApiResponseEnum status;
 
     @JsonProperty("errors")
     @JsonAlias("error")
     private PlatformErrorApiResponse[] errors;
+
 }

@@ -1,7 +1,8 @@
 package com.esercizio.backend.fabrick.service.platformApi.api;
 
 import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
-import com.esercizio.backend.fabrick.model.api.ExecuteBankTransferResponse;
+import com.esercizio.backend.fabrick.mapper.ExecuteBankTransferMapper;
+import com.esercizio.backend.fabrick.model.api.response.ExecuteBankTransferResponse;
 import com.esercizio.backend.fabrick.model.platformApi.PlatformApiExecuteBankTransferApiResponse;
 import com.esercizio.backend.fabrick.service.platformApi.clientRest.BankTransferRestClientService;
 import org.json.JSONException;
@@ -18,10 +19,13 @@ public class BankTransferApiServicePlatformApi implements PlatformApiRestApi<Res
     @Autowired
     private BankTransferRestClientService bankTransferRestClientService;
 
+    @Autowired
+    private ExecuteBankTransferMapper executeBankTransferMapper;
+
     public ResponseEntity<ExecuteBankTransferResponse> executeApi(BankAccontParamInputBin bankAccontParamInputBin) throws IOException, JSONException {
 
         PlatformApiExecuteBankTransferApiResponse response = bankTransferRestClientService.callApiRest(bankAccontParamInputBin);
-        return new ResponseEntity<>(response.getPayload(), HttpStatus.OK);
+        return new ResponseEntity<>(executeBankTransferMapper.covertTOExecuteBankTransfer(response.getPayload(), response), HttpStatus.OK);
     }
 
 }
