@@ -4,6 +4,7 @@ import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
 import com.esercizio.backend.fabrick.bin.HttpClientRequestBin;
 import com.esercizio.backend.fabrick.model.platformApi.PlatformApiExecuteBankTransferApiResponse;
 import com.esercizio.backend.fabrick.model.dto.api.BankTransferDto;
+import com.esercizio.backend.fabrick.model.platformApi.PlatformApiTransactionsApiResponse;
 import com.esercizio.backend.fabrick.service.common.HttpClientService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -27,16 +29,16 @@ public class BankTransferRestClientService implements ClientRestApi<PlatformApiE
     private HttpClientService httpClientService;
 
     @Value("${platformapifabrick.moneytransfer.url}")
-    private String urlTemplate;
+    private String urlTemplate = "";
 
     @Value("${platformapifabrick.moneytransfer.mock}")
-    private Boolean mock;
+    private Boolean mock = Boolean.FALSE;
 
     @Autowired
     private ResourceLoader resourceLoader;
 
     public PlatformApiExecuteBankTransferApiResponse callApiRest(BankAccontParamInputBin bankAccontParamInputBin) throws IOException, JSONException {
-       if (Boolean.TRUE.equals(mock)) {
+       if (Boolean.FALSE.equals(mock)) {
            HttpEntity response = httpClientService.executePost(prepareHttpClientRequestBin(bankAccontParamInputBin, urlTemplate));
            return preparePlatformApiResponse(response);
        }
@@ -78,6 +80,9 @@ public class BankTransferRestClientService implements ClientRestApi<PlatformApiE
 
     private PlatformApiExecuteBankTransferApiResponse covertObjectInJSON(String jsonString) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
+        if (StringUtils.isEmpty(jsonString))
+            return new PlatformApiExecuteBankTransferApiResponse();
+        else
         return objectMapper.readValue(jsonString, PlatformApiExecuteBankTransferApiResponse.class);
     }
 

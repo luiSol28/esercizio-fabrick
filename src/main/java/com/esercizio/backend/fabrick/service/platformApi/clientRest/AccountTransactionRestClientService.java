@@ -16,6 +16,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -31,20 +32,19 @@ public class AccountTransactionRestClientService implements com.esercizio.backen
     private HttpClientService httpClientService;
 
     @Value("${platformapifabrick.accountransactions.url}")
-    private String urlTemplate;
+    private String urlTemplate = "";
 
     @Value("${platformapifabrick.accountransactions.mock}")
-    private Boolean mock;
+    private Boolean mock = Boolean.FALSE;
 
     @Autowired
     private ResourceLoader resourceLoader;
 
     public PlatformApiTransactionsApiResponse callApiRest(BankAccontParamInputBin bankAccontParamInputBin) throws IOException {
-        if (Boolean.TRUE.equals(mock)) {
+        if (Boolean.FALSE.equals(mock)) {
             HttpEntity response = httpClientService.executeGet(prepareHttpClientRequestBin(bankAccontParamInputBin, urlTemplate));
             return preparePlatformApiResponse(response);
-        }
-        else return covertObjectInJSONMock();
+        } else return covertObjectInJSONMock();
     }
 
 
@@ -55,13 +55,16 @@ public class AccountTransactionRestClientService implements com.esercizio.backen
 
     private PlatformApiTransactionsApiResponse covertObjectInJSON(String jsonString) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(jsonString, PlatformApiTransactionsApiResponse.class);
+        if (StringUtils.isEmpty(jsonString))
+            return new PlatformApiTransactionsApiResponse();
+        else
+            return objectMapper.readValue(jsonString, PlatformApiTransactionsApiResponse.class);
     }
 
     private PlatformApiTransactionsApiResponse covertObjectInJSONMock() throws IOException {
         final Resource fileResource = resourceLoader.getResource("classpath:mock/PlatformApiTransactionsApiResponseMock.json");
         String jsonString = UtilityClassRestClient.convertStreamToString(fileResource.getInputStream());
-       return covertObjectInJSON(jsonString);
+        return covertObjectInJSON(jsonString);
     }
 
     public HttpClientRequestBin prepareHttpClientRequestBin(BankAccontParamInputBin bankAccontParamInputBin, String urlTemplate) {
@@ -82,11 +85,11 @@ public class AccountTransactionRestClientService implements com.esercizio.backen
     public MultiValueMap<String, String> prepareQueryParamMap(BankAccontParamInputBin bankAccontParamInputBin) {
         MultiValueMap<String, String> queryParam = new LinkedMultiValueMap<>();
         if (bankAccontParamInputBin.getFromAccountingDate() != null) {
-            queryParam.put("fromAccountingDate", Arrays.asList(bankAccontParamInputBin.getFromAccountingDate().toString()));
+            queryParam.put("fromAccountingDate", Arrays.asList(bankAccontParamInputBin.getFromAccountingDate()));
 
         }
         if (bankAccontParamInputBin.getToAccountingDate() != null) {
-            queryParam.put("toAccountingDate", Arrays.asList(bankAccontParamInputBin.getToAccountingDate().toString()));
+            queryParam.put("toAccountingDate", Arrays.asList(bankAccontParamInputBin.getToAccountingDate()));
 
         }
         return queryParam;

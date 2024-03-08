@@ -14,6 +14,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -50,6 +52,8 @@ public class AccountBalanceRestClientService implements ClientRestApi<PlatformAp
 
     private PlatformApiAccountBalanceApiResponse covertObjectInJSON(String jsonString) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
+        if ( StringUtils.isEmpty(jsonString))
+                return new PlatformApiAccountBalanceApiResponse();
         return objectMapper.readValue(jsonString, PlatformApiAccountBalanceApiResponse.class);
     }
 
