@@ -1,6 +1,7 @@
 package com.esercizio.backend.fabrick.service.platformApi.clientRest;
 
 import com.esercizio.backend.fabrick.bin.BankAccontParamInputBin;
+import lombok.experimental.UtilityClass;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@lombok.experimental.UtilityClass
+@UtilityClass
 public class UtilityClassRestClient {
 
     Logger logger = LoggerFactory.getLogger(UtilityClassRestClient.class);

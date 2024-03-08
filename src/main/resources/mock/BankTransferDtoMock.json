@@ -1,0 +1,12 @@
+{
+  "amount": 1,
+  "creditor": {
+    "name": "Solitro Luigi",
+    "account": {
+      "accountCode": "IT81W0306909563100000090208"
+    }
+  },
+  "currency": "EUR",
+  "description": "prova bonifico",
+  "executionDate": "2024-02-08"
+}

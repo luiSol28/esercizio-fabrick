@@ -26,16 +26,16 @@ public class AccountBalanceRestClientService implements ClientRestApi<PlatformAp
     private HttpClientService httpClientService;
 
     @Value("${platformapifabrick.accountBalance.url}")
-    private String urlTemplate;
+    private String urlTemplate = "";
 
     @Value("${platformapifabrick.accountBalance.mock}")
-    private Boolean mock;
+    private Boolean mock = Boolean.FALSE;
 
     @Autowired
     private ResourceLoader resourceLoader;
 
-    public PlatformApiAccountBalanceApiResponse callApiRest(BankAccontParamInputBin bankAccontParamInputBin) throws IOException, JSONException {
-        if (Boolean.TRUE.equals(mock)) {
+    public PlatformApiAccountBalanceApiResponse callApiRest(BankAccontParamInputBin bankAccontParamInputBin) throws IOException {
+        if (Boolean.FALSE.equals(mock)) {
             HttpEntity response = httpClientService.executeGet(prepareHttpClientRequestBin(bankAccontParamInputBin, urlTemplate));
             return preparePlatformApiResponse(response);
         } else {
